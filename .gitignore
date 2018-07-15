@@ -59,3 +59,9 @@ atlassian-ide-plugin.xml
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+\.idea/markdown-navigator\.xml
+
+\.idea/markdown-navigator/profiles_settings\.xml
+
+\.idea/misc\.xml
