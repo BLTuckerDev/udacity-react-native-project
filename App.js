@@ -6,6 +6,7 @@ import reducer from './reducers'
 import {Provider} from "react-redux";
 
 
+const store = createStore(reducer);
 
 export default class App extends React.Component {
 
@@ -15,7 +16,7 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <Provider store={createStore(reducer)} >
+            <Provider store={store} >
                 <View style={styles.container}>
                     <Home/>
                 </View>

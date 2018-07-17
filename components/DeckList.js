@@ -18,7 +18,6 @@ class DeckList extends Component {
     };
 
 
-
     render() {
 
         const {deckList} = this.props;
@@ -28,7 +27,7 @@ class DeckList extends Component {
                 <FlatList
                     data={deckList}
                     renderItem={this.renderDeck}
-                    keyExtractor={(item, index) => item.id}>
+                    keyExtractor={(item, index) => item.title}>
 
                 </FlatList>
             </View>
@@ -38,14 +37,15 @@ class DeckList extends Component {
 
 
 
-function mapStateToProps({decksObject}){
+function mapStateToProps({decks}){
 
+    console.log("deck list map state to props");
+    console.log(decks);
 
     //TODO Remove when we load real data
-    if(!decksObject){
-        decksObject = {
+    if(!decks){
+        decks = {
             React: {
-                id: "1",
                 title: 'React',
                 questions: [
                     {
@@ -59,7 +59,6 @@ function mapStateToProps({decksObject}){
                 ]
             },
             JavaScript: {
-                id: "2",
                 title: 'JavaScript',
                 questions: [
                     {
@@ -73,12 +72,10 @@ function mapStateToProps({decksObject}){
 
 
     return {
-        deckList: Object.keys(decksObject).map((key) => decksObject[key])
+        deckList: Object.keys(decks).map((key) => decks[key])
     }
 
 }
 
 
-
-//TODO Connect once the store is up
 export default connect(mapStateToProps)(DeckList);

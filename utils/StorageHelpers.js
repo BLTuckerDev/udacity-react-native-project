@@ -50,7 +50,7 @@ export function saveDeckTitle(title){
 
         const updatedDecks = {
             ...decksObject,
-            [generateUID()] : { title, questions: []}
+            [title] : { title: title, questions: []}
         }
 
 
@@ -74,9 +74,4 @@ export function addCardToDeck(deckTitle, card){
 
         return decksObject;
     })
-}
-
-
-function generateUID () {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
