@@ -8,6 +8,8 @@ import {View} from "react-native";
 import {getDecks} from "../utils/StorageHelpers";
 import {loadDecks} from "../actions";
 import {connect} from "react-redux";
+import DeckView from "./DeckView";
+import {appBlue} from "../utils/colors";
 
 const Tabs =  createTabNavigator({
         DeckList: {
@@ -42,6 +44,22 @@ const Tabs =  createTabNavigator({
 const AppNavigator = createStackNavigator({
     Home: {
         screen: Tabs,
+        navigationOptions: {
+            title: "Udacicards",
+            headerTintColor: "white",
+            headerStyle: {
+                backgroundColor: appBlue
+            }
+        }
+    },
+    DeckView: {
+        screen: DeckView,
+        navigationOptions: {
+            headerTintColor: "white",
+            headerStyle: {
+                backgroundColor: appBlue
+            }
+        }
     }
 });
 

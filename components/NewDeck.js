@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Text, StyleSheet, TouchableOpacity, View, TextInput} from "react-native";
 import {addNewDeck} from "../actions";
 import {saveDeckTitle} from "../utils/StorageHelpers";
+import {appBlue} from "../utils/colors";
 
 const styles = StyleSheet.create({
     center: {
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     submitButton: {
-        backgroundColor: 'blue',
+        backgroundColor: appBlue,
         padding: 20,
         height: 48,
         justifyContent: 'center'

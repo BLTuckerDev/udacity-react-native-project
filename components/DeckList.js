@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {FlatList, StyleSheet, Text, View} from "react-native";
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 
 const styles = StyleSheet.create({
     center: {
@@ -10,6 +10,20 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
         marginTop: 30
+    },
+    deckRowItem: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        borderBottomColor: "#000",
+        borderBottomWidth: 1,
+        padding: 30
+    },
+    deckTitleText: {
+        fontSize: 18
+    },
+    deckCountText: {
+        fontSize: 14
     }
 });
 
@@ -17,10 +31,12 @@ class DeckList extends Component {
 
     renderDeck = ({item}) =>{
         return (
-            <View>
-                <Text>{item.title}</Text>
-                <Text>{item.questions.length} cards</Text>
-            </View>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckView', {deckId: item.title})}>
+                <View style={styles.deckRowItem}  >
+                    <Text style={styles.deckTitleText}>{item.title}</Text>
+                    <Text style={styles.deckCountText}>{item.questions.length} cards</Text>
+                </View>
+            </TouchableOpacity>
         )
     };
 
