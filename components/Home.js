@@ -4,7 +4,10 @@ import NewDeck from "./NewDeck";
 import {
     createStackNavigator, createTabNavigator,
 } from "react-navigation";
-import {View, Platform} from "react-native";
+import {View} from "react-native";
+import {getDecks} from "../utils/StorageHelpers";
+import {loadDecks} from "../actions";
+import {connect} from "react-redux";
 
 const Tabs =  createTabNavigator({
         DeckList: {
@@ -42,7 +45,11 @@ const AppNavigator = createStackNavigator({
     }
 });
 
-export default class Home extends Component {
+class Home extends Component {
+
+    componentDidMount(){
+        getDecks().then((decks) => {this.props.dispatch(loadDecks(decks))})
+    }
 
     render() {
         return (
@@ -53,3 +60,9 @@ export default class Home extends Component {
     }
 
 }
+
+function mapStateToProps(){
+    return {}
+}
+
+export default connect(mapStateToProps)(Home)

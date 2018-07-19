@@ -1,12 +1,9 @@
-
-
-//TODO handle actions
-
-import {ADD_NEW_DECK} from "../actions";
-import {generateUID} from "../utils/StorageHelpers";
+import {ADD_NEW_DECK, LOAD_DECKS} from "../actions";
 
 export default function decksReducer(state = null, action){
     switch(action.type){
+        case LOAD_DECKS:
+            return action.decks
         case ADD_NEW_DECK:
 
             var newDeck = {

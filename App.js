@@ -10,10 +10,6 @@ const store = createStore(reducer);
 
 export default class App extends React.Component {
 
-    componentDidMount(){
-        //TODO Load the data
-    }
-
     render() {
         return (
             <Provider store={store} >

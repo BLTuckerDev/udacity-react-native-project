@@ -54,7 +54,7 @@ export function saveDeckTitle(title){
         }
 
 
-        AsyncStorage.setItem(ALL_DECKS_STORAGE_KEY, updatedDecks);
+        AsyncStorage.setItem(ALL_DECKS_STORAGE_KEY, JSON.stringify(updatedDecks));
 
         return updatedDecks
     })
@@ -70,7 +70,7 @@ export function addCardToDeck(deckTitle, card){
 
         deck.questions.push(card);
 
-        AsyncStorage.setItem(ALL_DECKS_STORAGE_KEY, decksObject);
+        AsyncStorage.setItem(ALL_DECKS_STORAGE_KEY, JSON.stringify(decksObject));
 
         return decksObject;
     })

@@ -1,26 +1,41 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {FlatList, Text, View} from "react-native";
+import {FlatList, StyleSheet, Text, View} from "react-native";
 
+const styles = StyleSheet.create({
+    center: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 30
+    }
+});
 
-//TODO Style this
 class DeckList extends Component {
 
     renderDeck = ({item}) =>{
-
         return (
             <View>
                 <Text>{item.title}</Text>
                 <Text>{item.questions.length} cards</Text>
             </View>
         )
-
     };
 
 
     render() {
 
         const {deckList} = this.props;
+
+        if(deckList.length === 0){
+            return (
+                <View style={styles.center}>
+                    <Text>Add some decks so you can start to study!</Text>
+                </View>
+            )
+        }
 
         return (
             <View>
@@ -39,37 +54,9 @@ class DeckList extends Component {
 
 function mapStateToProps({decks}){
 
-    console.log("deck list map state to props");
-    console.log(decks);
-
-    //TODO Remove when we load real data
     if(!decks){
-        decks = {
-            React: {
-                title: 'React',
-                questions: [
-                    {
-                        question: 'What is React?',
-                        answer: 'A library for managing user interfaces'
-                    },
-                    {
-                        question: 'Where do you make Ajax requests in React?',
-                        answer: 'The componentDidMount lifecycle event'
-                    }
-                ]
-            },
-            JavaScript: {
-                title: 'JavaScript',
-                questions: [
-                    {
-                        question: 'What is a closure?',
-                        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-                    }
-                ]
-            }
-        };
+        decks = {}
     }
-
 
     return {
         deckList: Object.keys(decks).map((key) => decks[key])
