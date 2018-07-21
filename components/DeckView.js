@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
         backgroundColor: appBlue,
         padding: 20,
         height: 48,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderRadius: 5
     },
     startQuizButtonText: {
         fontSize: 18,
