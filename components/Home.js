@@ -11,6 +11,7 @@ import {connect} from "react-redux";
 import DeckView from "./DeckView";
 import {appBlue} from "../utils/colors";
 import AddCard from "./AddCard";
+import Quiz from "./Quiz";
 
 const Tabs =  createTabNavigator({
         DeckList: {
@@ -66,6 +67,16 @@ const AppNavigator = createStackNavigator({
         screen: AddCard,
         navigationOptions: {
             title: "Add Card",
+            headerTintColor: "white",
+            headerStyle: {
+                backgroundColor: appBlue
+            }
+        }
+    },
+    Quiz: {
+        screen: Quiz,
+        navigationOptions: {
+        title: "Quiz",
             headerTintColor: "white",
             headerStyle: {
                 backgroundColor: appBlue

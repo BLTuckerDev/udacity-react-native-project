@@ -52,20 +52,14 @@ class DeckView extends Component {
         const {deck} = navigation.state.params;
 
         return {
+            title: deck.title,
             deck: deck
         }
 
     };
 
-    startQuiz = () => {
-
-    };
-
     render() {
-
         const {deck} = this.props;
-
-        console.log("rendering deck view");
 
         return (
             <View style={styles.center}>
@@ -78,7 +72,7 @@ class DeckView extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.startQuizButton}
-                                  onPress={this.startQuiz}>
+                                  onPress={() => this.props.navigation.navigate('Quiz', {questions: deck.questions})}>
                     <Text style={styles.startQuizButtonText}>Start Quiz</Text>
                 </TouchableOpacity>
 
@@ -91,11 +85,10 @@ class DeckView extends Component {
 function mapStateToProps({decks}, {navigation}) {
     const {deck} = navigation.state.params;
 
-    console.log("deck view mapStateToProps");
-    console.log(deck);
     return {
         deck,
-        date: new Date()//Without this, the component wouldn't re-render, even though mapStateToProps was being called.
+        date: new Date()//Without this, the component wouldn't re-render,
+        // even though mapStateToProps was being called. Decklist re-renders just fine.
     };
 }
 
