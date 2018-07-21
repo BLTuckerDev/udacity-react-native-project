@@ -4,11 +4,16 @@ import Home from "./components/Home";
 import { createStore } from 'redux'
 import reducer from './reducers'
 import {Provider} from "react-redux";
+import {setDailyQuizNotification} from "./utils/NotificationHelpers";
 
 
 const store = createStore(reducer);
 
 export default class App extends React.Component {
+
+    componentDidMount() {
+        setDailyQuizNotification();
+    }
 
     render() {
         return (

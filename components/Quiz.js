@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {appBlue} from "../utils/colors";
+import {clearDailyQuizNotification, setDailyQuizNotification} from "../utils/NotificationHelpers";
 
 
 const styles = StyleSheet.create({
@@ -114,6 +115,10 @@ class Quiz extends Component {
     backToDeck = () => {
         this.props.navigation.pop();
     };
+
+    componentDidMount(){
+        clearDailyQuizNotification().then(setDailyQuizNotification)
+    }
 
     render() {
         const {questions} = this.props;
