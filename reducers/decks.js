@@ -27,7 +27,7 @@ export default function decksReducer(state = null, action) {
             return action.decks;
         case ADD_NEW_DECK:
 
-            var newDeck = {
+            const newDeck = {
                 title: action.title,
                 questions: []
             };
