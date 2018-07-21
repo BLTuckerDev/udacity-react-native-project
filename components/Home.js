@@ -10,6 +10,7 @@ import {loadDecks} from "../actions";
 import {connect} from "react-redux";
 import DeckView from "./DeckView";
 import {appBlue} from "../utils/colors";
+import AddCard from "./AddCard";
 
 const Tabs =  createTabNavigator({
         DeckList: {
@@ -55,6 +56,16 @@ const AppNavigator = createStackNavigator({
     DeckView: {
         screen: DeckView,
         navigationOptions: {
+            headerTintColor: "white",
+            headerStyle: {
+                backgroundColor: appBlue
+            }
+        }
+    },
+    AddCard: {
+        screen: AddCard,
+        navigationOptions: {
+            title: "Add Card",
             headerTintColor: "white",
             headerStyle: {
                 backgroundColor: appBlue

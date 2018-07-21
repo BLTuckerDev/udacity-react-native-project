@@ -31,7 +31,7 @@ class DeckList extends Component {
 
     renderDeck = ({item}) =>{
         return (
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckView', {deckId: item.title})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckView', {deck: item})}>
                 <View style={styles.deckRowItem}  >
                     <Text style={styles.deckTitleText}>{item.title}</Text>
                     <Text style={styles.deckCountText}>{item.questions.length} cards</Text>

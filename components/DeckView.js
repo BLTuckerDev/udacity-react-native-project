@@ -49,15 +49,11 @@ const styles = StyleSheet.create({
 class DeckView extends Component {
 
     static navigationOptions = ({navigation}) => {
-        const {deckId} = navigation.state.params
+        const {deck} = navigation.state.params;
 
         return {
-            title: deckId
+            deck: deck
         }
-
-    };
-
-    addCard = () => {
 
     };
 
@@ -69,13 +65,15 @@ class DeckView extends Component {
 
         const {deck} = this.props;
 
+        console.log("rendering deck view");
+
         return (
             <View style={styles.center}>
                 <Text style={styles.deckTitleText}>{deck.title}</Text>
                 <Text style={styles.deckCardCountText}>{deck.questions.length} cards</Text>
 
                 <TouchableOpacity style={styles.addCardButton}
-                                  onPress={this.addCard}>
+                                  onPress={() => this.props.navigation.navigate('AddCard', {deck: deck})}>
                     <Text style={styles.addCardButtonText}>Add Card</Text>
                 </TouchableOpacity>
 
@@ -86,19 +84,19 @@ class DeckView extends Component {
 
             </View>
         )
-
     }
-
 }
 
 
-function mapStateToProps(state, {navigation}) {
-    const {deckId} = navigation.state.params;
-    const deck = state.decks[deckId];
+function mapStateToProps({decks}, {navigation}) {
+    const {deck} = navigation.state.params;
 
+    console.log("deck view mapStateToProps");
+    console.log(deck);
     return {
-        deck
-    }
+        deck,
+        date: new Date()//Without this, the component wouldn't re-render, even though mapStateToProps was being called.
+    };
 }
 
-export default connect(mapStateToProps)(DeckView)
+export default connect(mapStateToProps)(DeckView);

@@ -51,21 +51,21 @@ export function saveDeckTitle(title){
         const updatedDecks = {
             ...decksObject,
             [title] : { title: title, questions: []}
-        }
-
+        };
 
         AsyncStorage.setItem(ALL_DECKS_STORAGE_KEY, JSON.stringify(updatedDecks));
 
         return updatedDecks
-    })
+    });
 }
 
 export function addCardToDeck(deckTitle, card){
     getDecks().then((decksObject) => {
 
         const deck = Object.keys(decksObject)
-            .filter((deckKey) => {
-                return decksObject[deckKey].title === deckTitle
+            .map((deckTitle) => { return decksObject[deckTitle]})
+            .filter((deck) => {
+                return deck.title === deckTitle
             })[0];
 
         deck.questions.push(card);
