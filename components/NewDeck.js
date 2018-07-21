@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Text, StyleSheet, TouchableOpacity, View, TextInput} from "react-native";
 import {addNewDeck} from "../actions";
-import {saveDeckTitle} from "../utils/StorageHelpers";
+import {getDeck, saveDeckTitle} from "../utils/StorageHelpers";
 import {appBlue} from "../utils/colors";
 
 const styles = StyleSheet.create({
@@ -49,8 +49,10 @@ class NewDeck extends Component {
     submit = () => {
         const deckTitle = this.state.text;
         this.props.dispatch(addNewDeck(deckTitle));
-        saveDeckTitle(deckTitle);
 
+        saveDeckTitle(deckTitle).then((decksObject) => {
+            this.props.navigation.navigate('DeckView', {deck:  decksObject[deckTitle]});
+        });
         this.setState(() => ({text: ""}));
     };
 
@@ -67,7 +69,7 @@ class NewDeck extends Component {
                     value={this.state.text}
                 />
                 <TouchableOpacity style={styles.submitButton}
-                    onPress={this.submit}>
+                                  onPress={this.submit}>
                     <Text style={styles.submitButtonText}>SUBMIT</Text>
                 </TouchableOpacity>
 
@@ -76,7 +78,7 @@ class NewDeck extends Component {
     }
 }
 
-function mapStateToProps(){
+function mapStateToProps() {
     return {}
 }
 

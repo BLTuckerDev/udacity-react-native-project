@@ -46,7 +46,7 @@ export function getDeck(id){
 
 
 export function saveDeckTitle(title){
-    getDecks().then((decksObject) => {
+    return getDecks().then((decksObject) => {
 
         const updatedDecks = {
             ...decksObject,
